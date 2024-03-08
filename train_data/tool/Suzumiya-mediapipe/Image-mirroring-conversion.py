@@ -12,7 +12,13 @@ def mirror_images(input_folder, output_folder):
         if filename.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
             # 拼接文件路径
             input_path = os.path.join(input_folder, filename)
-            output_path = os.path.join(output_folder, filename)
+            
+            # 获取原始文件名和扩展名
+            name, extension = os.path.splitext(filename)
+            
+            # 生成镜像文件名
+            mirrored_filename = f"{name}-mirror image{extension}"
+            output_path = os.path.join(output_folder, mirrored_filename)
 
             # 打开图片文件
             try:
@@ -34,4 +40,5 @@ if __name__ == "__main__":
 
     # 执行镜像化图片操作
     mirror_images(input_folder, output_folder)
+
 
