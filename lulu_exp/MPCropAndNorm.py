@@ -16,7 +16,7 @@ class MPCropAndNorm:
         self.__avg_y_on_1024 = 0.6076579708466568 * 1024
         self.__standard_dxdy = 105.64138908808019 * 1024
 
-    def __detect_face(self, img):
+    def detect_face(self, img):
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         results = self.__face_detection.process(img_rgb)
         faces = []
@@ -74,10 +74,8 @@ class MPCropAndNorm:
             cropped_img = np.pad(cropped_img, pad_width=pad_width, mode=mode)
 
         return cropped_img
-
-    def crop_and_norm(self, img, mode):
-        faces = self.__detect_face(img)
-        h, w = img.shape[:2]
+    
+    def crop_and_norm_with_face( self, img , faces ):
         ans = []
         for face in faces:
             facial_pose = self.__align_face_original(img, face)
@@ -94,6 +92,12 @@ class MPCropAndNorm:
                 sub_img = copy.deepcopy(sub_img)
                 ans.append( sub_img )
         return ans
+
+
+    def crop_and_norm(self, img ):
+        faces = self.detect_face(img)
+        h, w = img.shape[:2]
+        return self.crop_and_norm_with_face( self, img , faces )
 
 # Example usage:
 # detector = MPCropAndNorm()
