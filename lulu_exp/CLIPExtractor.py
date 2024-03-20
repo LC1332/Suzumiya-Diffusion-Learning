@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class CLIPExtractor:
-    def __init__(self, model_name="Green-Sky/FaRL-Base-Patch16-LAIONFace20M-ep64", processor_name="openai/clip-vit-base-patch16"):
+    def __init__(self, model_name="openai/clip-vit-base-patch16", processor_name="openai/clip-vit-base-patch16"):
         # Initialize the model and processor with default or specified values
         self.model = CLIPModel.from_pretrained(model_name)
         self.processor = CLIPProcessor.from_pretrained(processor_name)
@@ -38,7 +38,7 @@ class CLIPExtractor:
         plt.title('Feature Heatmap')
         plt.xlabel('Feature Index')
         plt.ylabel('Image Index')
-        plt.savefig(save_name)
+        plt.savefig(save_namenump)
         plt.close()
 
 if __name__ == "__main__":

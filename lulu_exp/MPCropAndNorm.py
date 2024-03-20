@@ -97,7 +97,7 @@ class MPCropAndNorm:
     def crop_and_norm(self, img ):
         faces = self.detect_face(img)
         h, w = img.shape[:2]
-        return self.crop_and_norm_with_face( self, img , faces )
+        return self.crop_and_norm_with_face( img , faces )
 
 # Example usage:
 # detector = MPCropAndNorm()
