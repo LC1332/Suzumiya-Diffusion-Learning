@@ -1,0 +1,997 @@
+{
+  "last_node_id": 41,
+  "last_link_id": 71,
+  "nodes": [
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        699,
+        167
+      ],
+      "size": {
+        "0": 315,
+        "1": 262
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 60
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 61
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 62
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        636347366164773,
+        "randomize",
+        12,
+        6,
+        "dpmpp_sde",
+        "normal",
+        1
+      ]
+    },
+    {
+      "id": 24,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -732,
+        -593
+      ],
+      "size": {
+        "0": 422.84503173828125,
+        "1": 164.31304931640625
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 43
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            52
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "(solo) boy, photograph realistic (flat chest:0.9), (messy hair) blonde hair, blue eyes, standing, serafuku sweater, (brick house) (scenery HDR landscape)\n\n"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "LoadImage",
+      "pos": [
+        -1478,
+        -128
+      ],
+      "size": {
+        "0": 272.84295654296875,
+        "1": 372.2233581542969
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            63,
+            65
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "000080.jpg.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 32,
+      "type": "DiffControlNetLoaderAdvanced",
+      "pos": [
+        -656,
+        -260
+      ],
+      "size": {
+        "0": 367.79998779296875,
+        "1": 78
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 44
+        },
+        {
+          "name": "timestep_keyframe",
+          "type": "TIMESTEP_KEYFRAME",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            49
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DiffControlNetLoaderAdvanced"
+      },
+      "widgets_values": [
+        "OpenPoseXL2.safetensors"
+      ]
+    },
+    {
+      "id": 36,
+      "type": "OpenposePreprocessor",
+      "pos": [
+        -1122,
+        -191
+      ],
+      "size": {
+        "0": 315,
+        "1": 150
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 63
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            67,
+            71
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "POSE_KEYPOINT",
+          "type": "POSE_KEYPOINT",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenposePreprocessor"
+      },
+      "widgets_values": [
+        "enable",
+        "enable",
+        "enable",
+        512
+      ]
+    },
+    {
+      "id": 38,
+      "type": "PreviewImage",
+      "pos": [
+        -1504,
+        -504
+      ],
+      "size": [
+        278.7821608203126,
+        287.15910886718757
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 67
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 37,
+      "type": "LineartStandardPreprocessor",
+      "pos": [
+        -1129,
+        23
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 65
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            66,
+            68
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LineartStandardPreprocessor"
+      },
+      "widgets_values": [
+        6,
+        8,
+        512
+      ]
+    },
+    {
+      "id": 39,
+      "type": "PreviewImage",
+      "pos": [
+        -1467,
+        312
+      ],
+      "size": [
+        307.99236082031257,
+        299.35073886718783
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 68
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -385,
+        226
+      ],
+      "size": {
+        "0": 425.27801513671875,
+        "1": 180.6060791015625
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 42
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            48
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "(hands), text, error, cropped, (worst quality:1.2), (low quality:1.2), normal quality, (jpeg artifacts:1.3), signature, watermark, username, blurry, artist name, monochrome, sketch, censorship, censor, (copyright:1.2), extra legs, (forehead mark) (depth of field) (emotionless) (penis)"
+      ]
+    },
+    {
+      "id": 31,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -931,
+        251
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            44,
+            51
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            42,
+            43
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1053,
+        172
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 7
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 28
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            69
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 40,
+      "type": "PreviewImage",
+      "pos": [
+        1397,
+        186
+      ],
+      "size": [
+        398,
+        462
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 69
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 34,
+      "type": "ACN_AdvancedControlNetApply",
+      "pos": [
+        431,
+        -409
+      ],
+      "size": {
+        "0": 355.20001220703125,
+        "1": 266
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 54
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 55
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 70,
+          "slot_index": 2
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 66
+        },
+        {
+          "name": "mask_optional",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "timestep_kf",
+          "type": "TIMESTEP_KEYFRAME",
+          "link": null
+        },
+        {
+          "name": "latent_kf_override",
+          "type": "LATENT_KEYFRAME",
+          "link": null
+        },
+        {
+          "name": "weights_override",
+          "type": "CONTROL_NET_WEIGHTS",
+          "link": null
+        },
+        {
+          "name": "model_optional",
+          "type": "MODEL",
+          "link": 58
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            61
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            62
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "model_opt",
+          "type": "MODEL",
+          "links": [
+            60
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ACN_AdvancedControlNetApply"
+      },
+      "widgets_values": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 41,
+      "type": "ControlNetLoaderAdvanced",
+      "pos": [
+        78,
+        57
+      ],
+      "size": {
+        "0": 367.79998779296875,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "timestep_keyframe",
+          "type": "TIMESTEP_KEYFRAME",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            70
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoaderAdvanced"
+      },
+      "widgets_values": [
+        "diffusion_pytorch_model.safetensors"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        240,
+        445
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 15,
+      "type": "VAELoader",
+      "pos": [
+        720,
+        506
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            28
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "sdxl_vae.vae.safetensors"
+      ]
+    },
+    {
+      "id": 33,
+      "type": "ACN_AdvancedControlNetApply",
+      "pos": [
+        -228,
+        -294
+      ],
+      "size": {
+        "0": 355.20001220703125,
+        "1": 266
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 52
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 48
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 49
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 71
+        },
+        {
+          "name": "mask_optional",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "timestep_kf",
+          "type": "TIMESTEP_KEYFRAME",
+          "link": null
+        },
+        {
+          "name": "latent_kf_override",
+          "type": "LATENT_KEYFRAME",
+          "link": null
+        },
+        {
+          "name": "weights_override",
+          "type": "CONTROL_NET_WEIGHTS",
+          "link": null
+        },
+        {
+          "name": "model_optional",
+          "type": "MODEL",
+          "link": 51
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            54
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            55
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "model_opt",
+          "type": "MODEL",
+          "links": [
+            58
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ACN_AdvancedControlNetApply"
+      },
+      "widgets_values": [
+        1,
+        0,
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      2,
+      5,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      7,
+      3,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      28,
+      15,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      42,
+      31,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      43,
+      31,
+      1,
+      24,
+      0,
+      "CLIP"
+    ],
+    [
+      44,
+      31,
+      0,
+      32,
+      0,
+      "MODEL"
+    ],
+    [
+      48,
+      7,
+      0,
+      33,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      49,
+      32,
+      0,
+      33,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      51,
+      31,
+      0,
+      33,
+      8,
+      "MODEL"
+    ],
+    [
+      52,
+      24,
+      0,
+      33,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      54,
+      33,
+      0,
+      34,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      55,
+      33,
+      1,
+      34,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      58,
+      33,
+      2,
+      34,
+      8,
+      "MODEL"
+    ],
+    [
+      60,
+      34,
+      2,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      61,
+      34,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      62,
+      34,
+      1,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      63,
+      21,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      65,
+      21,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      66,
+      37,
+      0,
+      34,
+      3,
+      "IMAGE"
+    ],
+    [
+      67,
+      36,
+      0,
+      38,
+      0,
+      "IMAGE"
+    ],
+    [
+      68,
+      37,
+      0,
+      39,
+      0,
+      "IMAGE"
+    ],
+    [
+      69,
+      8,
+      0,
+      40,
+      0,
+      "IMAGE"
+    ],
+    [
+      70,
+      41,
+      0,
+      34,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      71,
+      36,
+      0,
+      33,
+      3,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Apply Pose ControlNet",
+      "bounding": [
+        -732,
+        -355,
+        859,
+        323
+      ],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "Apply Scribble ControlNet",
+      "bounding": [
+        170,
+        -480,
+        739,
+        336
+      ],
+      "color": "#3f789e",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
