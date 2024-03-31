@@ -1,0 +1,10 @@
+transformers
+pillow==10.2.0
+scikit-learn
+sentence-transformers
+scikit-learn
+mediapipe
+streamlit
+gradio
+requests
+opencv-python
