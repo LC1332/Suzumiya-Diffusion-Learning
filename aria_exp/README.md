@@ -24,5 +24,8 @@ streamlit run app_st.py
 ```
 [search by id](https://github.com/LC1332/Suzumiya-Diffusion-Learning/tree/main/aria_exp/id.png)
 
+<p align="center">
+    <img src="https://github.com/LC1332/Suzumiya-Diffusion-Learning/blob/main/aria_exp/id.png">
+</p>
 ## gradio demo
 TBD
