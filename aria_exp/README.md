@@ -27,5 +27,7 @@ streamlit run app_st.py
 <p align="center">
     <img src="https://github.com/LC1332/Suzumiya-Diffusion-Learning/blob/main/aria_exp/id.png">
 </p>
+
 ## gradio demo
-TBD
+
+gradio for oai is done
